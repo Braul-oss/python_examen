@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "User API",
+      "description": "API para gestionar usuarios",
+      "version": "1.0.0"
+    },
+    "basePath": "/users",
+    "schemes": ["http"],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Obtener todos los usuarios",
+          "responses": {
+            "200": {
+              "description": "Lista de usuarios"
+            }
+          }
+        },
+        "post": {
+          "summary": "Crear un nuevo usuario",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Usuario creado exitosamente"
+            }
+          }
+        }
+      },
+      "/{id}": {
+        "put": {
+          "summary": "Actualizar usuario",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuario actualizado exitosamente"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Eliminar usuario",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuario eliminado"
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "Iniciar sesión",
+          "description": "Verifica las credenciales del usuario.",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "usuario@ejemplo.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Login exitoso"
+            },
+            "401": {
+              "description": "Credenciales inválidas"
+            }
+          }
+        }
+      }
+    }
+  }
+  
